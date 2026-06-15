@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perguruan Gajah Mada Binjai</title>
+  <meta name="description" content="Website resmi Perguruan Gajah Mada Binjai." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #d71920;
+      --deep-red: #8f1116;
+      --gold: #f7c948;
+      --navy: #14213d;
+      --cream: #fff8e8;
+      --ink: #1d2433;
+      --muted: #667085;
+      --white: #ffffff;
+      --soft: #f6f8fb;
+      --line: rgba(20, 33, 61, 0.12);
+      --shadow: 0 24px 60px rgba(20, 33, 61, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Open Sans', Arial, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .topbar {
+      background: linear-gradient(90deg, var(--deep-red), var(--red));
+      color: white;
+      font-size: 0.9rem;
+      padding: 0.55rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 82px;
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .brand { display: flex; align-items: center; gap: 0.9rem; }
+    .brand img { width: 58px; height: 58px; object-fit: contain; }
+    .brand h1 { margin: 0; font-family: 'Montserrat', Arial, sans-serif; font-size: clamp(1.15rem, 2vw, 1.65rem); color: var(--navy); line-height: 1.05; }
+    .brand p { margin: 0.15rem 0 0; color: var(--red); font-weight: 700; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .menu { display: flex; align-items: center; gap: 1.2rem; font-weight: 700; color: var(--navy); font-size: 0.95rem; }
+    .menu a { position: relative; }
+    .menu a::after { content: ''; position: absolute; left: 0; bottom: -8px; width: 0; height: 3px; border-radius: 99px; background: var(--gold); transition: .25s ease; }
+    .menu a:hover::after { width: 100%; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: 0.85rem 1.25rem; font-weight: 800; background: var(--red); color: white; box-shadow: 0 14px 28px rgba(215,25,32,.25); }
+    .btn.gold { background: var(--gold); color: var(--navy); box-shadow: 0 14px 28px rgba(247,201,72,.30); }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 116px);
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(20,33,61,.92) 0%, rgba(20,33,61,.66) 45%, rgba(143,17,22,.42) 100%), url('assets/campus-court.jpg') center/cover no-repeat;
+      z-index: -2;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: auto -15% -45% auto;
+      width: 55vw; height: 55vw;
+      background: radial-gradient(circle, rgba(247,201,72,.32), transparent 60%);
+      z-index: -1;
+    }
+
+    .hero-content { width: min(1120px, 90vw); margin: 0 auto; padding: 6rem 0; }
+    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .18em; font-weight: 900; font-size: .8rem; }
+    .hero h2 { font-family: 'Montserrat', Arial, sans-serif; font-size: clamp(2.9rem, 7vw, 6.8rem); line-height: .92; margin: .9rem 0 1.2rem; max-width: 880px; }
+    .hero p { max-width: 710px; font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,.9); margin-bottom: 2rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    section { padding: 6.2rem 5vw; }
+    .section-title { text-align: center; max-width: 760px; margin: 0 auto 3rem; }
+    .section-title span { color: var(--red); font-weight: 900; letter-spacing: .15em; text-transform: uppercase; font-size: .78rem; }
+    .section-title h2 { font-family: 'Montserrat', Arial, sans-serif; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.05; margin: .6rem 0 1rem; color: var(--navy); }
+    .section-title p { color: var(--muted); margin: 0; }
+
+    .quick-grid, .level-grid, .subject-grid, .steps-grid, .requirements-grid, .gallery-grid { width: min(1120px, 100%); margin: 0 auto; display: grid; gap: 1.2rem; }
+    .quick-grid { grid-template-columns: repeat(3, 1fr); margin-top: -3.5rem; position: relative; z-index: 5; }
+    .quick-card, .level-card, .subject-card, .step-card, .req-card, .message-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 1.6rem;
+      box-shadow: var(--shadow);
+    }
+    .quick-card { display: flex; justify-content: space-between; align-items: center; min-height: 130px; }
+    .quick-card strong { font-size: 1.18rem; color: var(--navy); }
+    .quick-card span { width: 42px; height: 42px; border-radius: 50%; background: var(--cream); display: grid; place-items: center; color: var(--red); font-weight: 900; }
+
+    .levels { background: var(--soft); }
+    .level-grid { grid-template-columns: repeat(4, 1fr); }
+    .level-card { box-shadow: none; position: relative; overflow: hidden; min-height: 210px; }
+    .level-card::before { content: ''; position: absolute; inset: 0 0 auto; height: 8px; background: linear-gradient(90deg, var(--red), var(--gold)); }
+    .level-card h3 { margin: 1rem 0 .5rem; color: var(--navy); font-size: 1.35rem; }
+    .level-card p { color: var(--muted); margin: 0; }
+
+    .about-wrap { width: min(1120px, 100%); margin: 0 auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: 1.4rem; align-items: stretch; }
+    .vision-box { background: linear-gradient(135deg, var(--navy), #26385f); color: white; border-radius: 34px; padding: 2.2rem; box-shadow: var(--shadow); }
+    .vision-box h3, .mission-box h3 { margin-top: 0; font-family: 'Montserrat', Arial, sans-serif; font-size: 2rem; }
+    .vision-box p { color: rgba(255,255,255,.88); }
+    .mission-box { border-radius: 34px; background: var(--cream); padding: 2.2rem; border: 1px solid rgba(247,201,72,.45); }
+    .mission-item { display: grid; grid-template-columns: 46px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(20,33,61,.1); }
+    .mission-item:last-child { border-bottom: 0; }
+    .mission-item b { color: var(--red); font-size: 1.2rem; }
+    .message-card { width: min(1120px, 100%); margin: 1.4rem auto 0; box-shadow: none; background: white; border-left: 8px solid var(--red); }
+    .message-card h3 { margin: 0 0 .6rem; color: var(--navy); }
+
+    .academics { background: linear-gradient(180deg, white, var(--soft)); }
+    .subject-grid { grid-template-columns: repeat(3, 1fr); }
+    .subject-card { box-shadow: none; display: flex; align-items: center; gap: .8rem; }
+    .dot { width: 12px; height: 12px; background: var(--gold); border: 3px solid var(--red); border-radius: 50%; flex: none; }
+    .curriculum { width: min(1120px, 100%); margin: 1.5rem auto 0; background: var(--navy); color: white; border-radius: 30px; padding: 2rem; }
+    .curriculum h3 { margin-top: 0; font-family: 'Montserrat', Arial, sans-serif; font-size: 2rem; }
+    .curriculum p { color: rgba(255,255,255,.88); margin-bottom: 0; }
+
+    .admissions { background: var(--cream); }
+    .steps-grid { grid-template-columns: repeat(5, 1fr); }
+    .step-card { box-shadow: none; padding: 1.3rem; }
+    .step-card b { color: var(--red); font-size: 1.4rem; }
+    .requirements-grid { grid-template-columns: repeat(5, 1fr); margin-top: 1.2rem; }
+    .req-card { box-shadow: none; text-align: center; padding: 1rem; font-weight: 700; }
+
+    .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+    .gallery-item { border-radius: 28px; overflow: hidden; position: relative; min-height: 330px; box-shadow: var(--shadow); background: var(--navy); }
+    .gallery-item.wide { grid-column: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(20,33,61,.85)); }
+    .caption { position: absolute; left: 1.2rem; right: 1.2rem; bottom: 1.2rem; z-index: 2; color: white; font-weight: 900; font-size: 1.2rem; }
+
+    .contact { background: var(--navy); color: white; }
+    .contact .section-title h2, .contact .section-title p { color: white; }
+    .contact-wrap { width: min(1120px, 100%); margin: 0 auto; display: grid; grid-template-columns: .9fr 1.1fr; gap: 1.3rem; }
+    .contact-card, form { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: 30px; padding: 2rem; }
+    .contact-card h3, form h3 { margin-top: 0; color: var(--gold); }
+    .contact-card p { color: rgba(255,255,255,.86); margin: .8rem 0; }
+    iframe { width: 100%; height: 280px; border: 0; border-radius: 24px; margin-top: 1rem; filter: grayscale(.1); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    input, textarea { width: 100%; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.1); color: white; border-radius: 16px; padding: 1rem; font: inherit; outline: none; }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,.65); }
+    textarea { min-height: 150px; grid-column: 1 / -1; resize: vertical; }
+    form .btn { border: 0; margin-top: 1rem; cursor: pointer; }
+
+    footer { background: #0c1427; color: rgba(255,255,255,.75); padding: 1.5rem 5vw; text-align: center; }
+
+    @media (max-width: 920px) {
+      .menu { display: none; }
+      .quick-grid, .level-grid, .subject-grid, .steps-grid, .requirements-grid, .gallery-grid, .about-wrap, .contact-wrap { grid-template-columns: 1fr 1fr; }
+      .about-wrap, .contact-wrap { grid-template-columns: 1fr; }
+      .quick-grid { margin-top: 2rem; }
+      .hero { min-height: auto; }
+    }
+    @media (max-width: 620px) {
+      .topbar { display: none; }
+      .nav { min-height: 72px; }
+      .brand img { width: 48px; height: 48px; }
+      .quick-grid, .level-grid, .subject-grid, .steps-grid, .requirements-grid, .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item.wide { grid-column: span 1; }
+      .form-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 5vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div>Jl. Rasberi No. 22 & Jl. Anggur No. 02, Binjai Barat</div>
+    <div>Tel: (061) 8822129 · WA: 082366838600 / 085362997914</div>
+  </div>
+
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#home">
+        <img src="assets/logo.png" alt="logo Perguruan Gajah Mada Binjai" />
+        <div>
+          <h1>Perguruan Gajah Mada Binjai</h1>
+          <p>Pendidikan Bermakna</p>
+        </div>
+      </a>
+      <div class="menu">
+        <a href="#home">Beranda</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#academics">Akademik</a>
+        <a href="#admissions">Pendaftaran</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#contact">Kontak</a>
+      </div>
+      <a class="btn" href="#admissions">Daftar Sekarang</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Selamat Datang di</div>
+        <h2>Perguruan Gajah Mada Binjai</h2>
+        <p>Sekolah yang berkomitmen menyediakan pendidikan yang bermakna dan berkesinambungan bagi peserta didik mulai dari taman kanak-kanak, sekolah dasar, sekolah menengah pertama, hingga sekolah menengah atas.</p>
+        <div class="hero-actions">
+          <a class="btn gold" href="#about">Kenali Sekolah Kami</a>
+          <a class="btn" href="#contact">Hubungi Kami</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="quick-grid" aria-label="Tautan cepat">
+      <a class="quick-card" href="#about"><strong>Tentang Kami</strong><span>→</span></a>
+      <a class="quick-card" href="#admissions"><strong>Pendaftaran</strong><span>→</span></a>
+      <a class="quick-card" href="#contact"><strong>Hubungi Kami</strong><span>→</span></a>
+    </div>
+
+    <section class="levels">
+      <div class="section-title">
+        <span>Jenjang Pendidikan</span>
+        <h2>Pendidikan untuk setiap tahap perkembangan</h2>
+        <p>Dari pembelajaran usia dini hingga sekolah menengah atas, peserta didik dibimbing dalam pengembangan akademik, karakter, dan kepribadian.</p>
+      </div>
+      <div class="level-grid">
+        <div class="level-card"><h3>Taman Kanak-Kanak</h3><p>Pembelajaran awal yang membangun rasa percaya diri, rasa ingin tahu, dan kebiasaan belajar yang menyenangkan.</p></div>
+        <div class="level-card"><h3>Sekolah Dasar</h3><p>Fondasi kuat dalam literasi, numerasi, karakter, dan kedisiplinan.</p></div>
+        <div class="level-card"><h3>Sekolah Menengah Pertama</h3><p>Mengembangkan tanggung jawab, kreativitas, komunikasi, dan kemampuan bernalar kritis.</p></div>
+        <div class="level-card"><h3>Sekolah Menengah Atas</h3><p>Mempersiapkan peserta didik dengan ilmu, nilai, dan daya saing untuk masa depan.</p></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title">
+        <span>Tentang Kami</span>
+        <h2>Visi dan misi yang berlandaskan IPTEK dan IMTAQ</h2>
+      </div>
+      <div class="about-wrap">
+        <div class="vision-box">
+          <h3>Visi Perguruan Gajah Mada Binjai</h3>
+          <p>Terwujudnya pendidikan yang bermakna, unggul, maju, dan berkesinambungan dalam membentuk peserta didik yang bernalar kritis, beriman, berkarakter, kreatif, mandiri, sehat, komunikatif, kolaboratif, serta berdaya saing tinggi melalui penguasaan IPTEK yang berlandaskan IMTAQ dalam semangat kebhinekaan.</p>
+        </div>
+        <div class="mission-box">
+          <h3>Misi Perguruan Gajah Mada Binjai</h3>
+          <div class="mission-item"><b>01</b><p>Menyelenggarakan pembelajaran yang bermakna, aktif, kreatif, inovatif, dan menyenangkan.</p></div>
+          <div class="mission-item"><b>02</b><p>Membentuk karakter, keterampilan, kecerdasan, disiplin, tanggung jawab, dan akhlak mulia.</p></div>
+          <div class="mission-item"><b>03</b><p>Mengembangkan daya saing peserta didik melalui ilmu pengetahuan, teknologi, seni, budaya, dan kebhinekaan.</p></div>
+          <div class="mission-item"><b>04</b><p>Menanamkan nilai iman, takwa, dan kemampuan mengintegrasikan IPTEK dengan IMTAQ.</p></div>
+          <div class="mission-item"><b>05</b><p>Mendorong kolaborasi, komunikasi, pola hidup sehat, serta kegiatan seni, olahraga, dan kepramukaan.</p></div>
+        </div>
+      </div>
+      <div class="message-card">
+        <h3>Sambutan Kepala Sekolah</h3>
+        <p>Selamat datang di Perguruan Gajah Mada Binjai. Sekolah kami berkomitmen membimbing peserta didik menjadi pribadi yang berpengetahuan, disiplin, kreatif, dan bertanggung jawab. Melalui pembelajaran bermakna, pengembangan karakter, serta keseimbangan antara IPTEK dan IMTAQ, kami berupaya mempersiapkan peserta didik untuk masa depan yang lebih baik.</p>
+      </div>
+    </section>
+
+    <section id="academics" class="academics">
+      <div class="section-title">
+        <span>Akademik</span>
+        <h2>Pembelajaran seimbang untuk perkembangan akademik dan karakter</h2>
+      </div>
+      <div class="subject-grid">
+        <div class="subject-card"><span class="dot"></span>Bahasa Indonesia</div>
+        <div class="subject-card"><span class="dot"></span>Matematika</div>
+        <div class="subject-card"><span class="dot"></span>Ilmu Pengetahuan Alam</div>
+        <div class="subject-card"><span class="dot"></span>Ilmu Pengetahuan Sosial</div>
+        <div class="subject-card"><span class="dot"></span>Bahasa Inggris</div>
+        <div class="subject-card"><span class="dot"></span>Bahasa Mandarin</div>
+        <div class="subject-card"><span class="dot"></span>Agama</div>
+        <div class="subject-card"><span class="dot"></span>Pendidikan Jasmani</div>
+        <div class="subject-card"><span class="dot"></span>Seni dan Budaya</div>
+        <div class="subject-card"><span class="dot"></span>Teknologi / Komputer</div>
+      </div>
+      <div class="curriculum">
+        <h3>Kurikulum Sekolah</h3>
+        <p>Kurikulum sekolah berfokus pada pengembangan akademik, pembentukan karakter, kreativitas, kedisiplinan, kolaborasi, serta integrasi IPTEK dan IMTAQ pada jenjang Taman Kanak-Kanak, SD, SMP, dan SMA.</p>
+      </div>
+    </section>
+
+    <section id="admissions" class="admissions">
+      <div class="section-title">
+        <span>Pendaftaran</span>
+        <h2>Mulai proses pendaftaran Anda</h2>
+        <p>Ikuti langkah-langkah sederhana berikut untuk mendaftar di Perguruan Gajah Mada Binjai.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card"><b>01</b><p>Kunjungi kantor sekolah.</p></div>
+        <div class="step-card"><b>02</b><p>Isi formulir pendaftaran.</p></div>
+        <div class="step-card"><b>03</b><p>Serahkan dokumen yang diperlukan.</p></div>
+        <div class="step-card"><b>04</b><p>Selesaikan proses pendaftaran.</p></div>
+        <div class="step-card"><b>05</b><p>Tunggu konfirmasi dari pihak sekolah.</p></div>
+      </div>
+      <div class="requirements-grid">
+        <div class="req-card">Fotokopi akta kelahiran</div>
+        <div class="req-card">Fotokopi kartu keluarga</div>
+        <div class="req-card">Rapor sekolah sebelumnya</div>
+        <div class="req-card">Pas foto</div>
+        <div class="req-card">Formulir pendaftaran</div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="section-title">
+        <span>Galeri</span>
+        <h2>Kehidupan sekolah dan identitas peserta didik</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item wide"><img src="assets/campus-court.jpg" alt="Kampus sekolah dan lapangan"><div class="caption">Lingkungan Sekolah</div></div>
+        <div class="gallery-item"><img src="assets/kindergarten-students.jpg" alt="Peserta didik taman kanak-kanak"><div class="caption">Taman Kanak-Kanak</div></div>
+        <div class="gallery-item"><img src="assets/sd-students.jpg" alt="Peserta didik sekolah dasar"><div class="caption">Sekolah Dasar</div></div>
+        <div class="gallery-item"><img src="assets/smp-students.jpg" alt="Peserta didik sekolah menengah pertama"><div class="caption">Sekolah Menengah Pertama</div></div>
+        <div class="gallery-item"><img src="assets/sma-students.jpg" alt="Peserta didik sekolah menengah atas"><div class="caption">Sekolah Menengah Atas</div></div>
+        <div class="gallery-item wide"><img src="assets/ceremony.jpg" alt="Upacara sekolah"><div class="caption">Upacara Sekolah</div></div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="section-title">
+        <span>Hubungi Kami</span>
+        <h2>Kunjungi atau hubungi kantor sekolah</h2>
+        <p>Kami menyambut orang tua dan peserta didik untuk menghubungi kami terkait pendaftaran dan informasi umum.</p>
+      </div>
+      <div class="contact-wrap">
+        <div class="contact-card">
+          <h3>Alamat Sekolah</h3>
+          <p><strong>Gedung A:</strong> Jl. Rasberi No. 22, Kel. Suka Maju, Kec. Binjai Barat, Kota Binjai</p>
+          <p><strong>Gedung B:</strong> Jl. Anggur No. 02, Kel. Bandar Senembah, Kec. Binjai Barat, Kota Binjai</p>
+          <p><strong>Telepon:</strong> (061) 8822129</p>
+          <p><strong>WhatsApp:</strong> 082366838600, 085362997914</p>
+          <p><strong>Email:</strong> dokumentasigama@gmail.com</p>
+          <iframe title="Lokasi Google Maps" src="https://www.google.com/maps?q=Perguruan%20Gajah%20Mada%20Binjai&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <form onsubmit="kirimWhatsApp(); return false;">
+  <h3>Kirim Pesan</h3>
+  <div class="form-grid">
+    <input type="text" id="nama" placeholder="Nama" aria-label="Nama" required>
+    <input type="email" id="email" placeholder="Email" aria-label="Email">
+    <input type="tel" id="telepon" placeholder="Nomor Telepon" aria-label="Nomor Telepon" required>
+    <input type="text" id="subjek" placeholder="Subjek" aria-label="Subjek">
+    <textarea id="pesan" placeholder="Pesan" aria-label="Pesan" required></textarea>
+  </div>
+  <button class="btn gold" type="submit">Kirim Pesan</button>
+</form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Perguruan Gajah Mada Binjai.
+  </footer>
+  <script>
+function kirimWhatsApp() {
+    const nama = document.getElementById("nama").value;
+    const email = document.getElementById("email").value;
+    const telepon = document.getElementById("telepon").value;
+    const subjek = document.getElementById("subjek").value;
+    const pesan = document.getElementById("pesan").value;
+
+    const nomor = "6282161549883";//NO TELP
+
+    const text =
+        `Halo, saya ingin menghubungi Perguruan Gajah Mada Binjai.%0A%0A` +
+        `Nama: ${nama}%0A` +
+        `Email: ${email}%0A` +
+        `No. Telepon: ${telepon}%0A` +
+        `Subjek: ${subjek}%0A` +
+        `Pesan: ${pesan}`;
+
+    window.open(`https://wa.me/${nomor}?text=${text}`, "_blank");
+}
+</script>
+</body>
+</html>
