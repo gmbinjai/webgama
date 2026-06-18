@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gajahmadabinjai.sch.id/sitemap.xml
