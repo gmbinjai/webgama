@@ -69,6 +69,40 @@
     .brand img { width: 58px; height: 58px; object-fit: contain; }
     .brand h1 { margin: 0; font-family: 'Montserrat', Arial, sans-serif; font-size: clamp(1.15rem, 2vw, 1.65rem); color: var(--navy); line-height: 1.05; }
     .brand p { margin: 0.15rem 0 0; color: var(--red); font-weight: 700; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .brand-text h3{
+      margin:0;
+      font-family:'Montserrat', Arial, sans-serif;
+      font-size:0.95rem;
+      font-weight:700;
+      color:var(--navy);
+      line-height:1;
+    }
+
+    .brand-text h1{
+      margin:0;
+      font-family:'Montserrat', Arial, sans-serif;
+      font-size:clamp(1.15rem, 2vw, 1.65rem);
+      color:var(--navy);
+      line-height:0.95;
+      display:flex;
+      flex-direction:column;
+      gap:0;
+    }
+
+    .brand-text h1 span{
+      display:block;
+    }
+
+    .brand-text p{
+      margin:0;
+      color:var(--red);
+      font-weight:700;
+      font-size:0.72rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      line-height:1;
+    }
+
 
     .menu { display: flex; align-items: center; gap: 1.2rem; font-weight: 700; color: var(--navy); font-size: 0.90rem; }
     .menu a { position: relative; }
@@ -232,6 +266,12 @@
       .form-grid { grid-template-columns: 1fr; }
       section { padding: 4rem 5vw; }
       .ekskul-grid { grid-template-columns: repeat(2, 1fr); }
+      .brand-text h1{
+        font-size:1.1rem;
+      }
+      .brand-text h1 span{
+        display:block;
+      }
     }
   </style>
 </head>
@@ -245,8 +285,9 @@
     <nav class="nav">
       <a class="brand" href="#home">
         <img src="assets/logo.png" alt="logo Perguruan Gajah Mada Binjai" />
-        <div>
-          <h1>Perguruan Gajah Mada Binjai</h1>
+        <div class="brand-text">
+          <h3>Perguruan</h3>
+          <h1>Gajah Mada Binjai</h1>
           <p>Pendidikan Bermakna</p>
         </div>
       </a>
